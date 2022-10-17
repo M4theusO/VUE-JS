@@ -1,13 +1,16 @@
 <template>
   <div>
-    <TheHeader v-if="showHeader"/>
-    <h1>Hello World</h1><br>
-    <input v-model="name" type="text">
-    {{ name }} <br>
+    <TheHeader>
+      <template v-slot:title>
+        <h1>Home</h1>
+      </template>
 
-    <button @click="showHeader = !showHeader">
-      Ativar e Desativar header
-    </button>
+      <template v-slot:description>
+        <p>Essa é a descrição da home</p>
+      </template>
+
+      Content do header - menu...
+    </TheHeader>
   </div>
  
 </template>
