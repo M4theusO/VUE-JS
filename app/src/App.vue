@@ -1,7 +1,13 @@
 <template>
   <div>
-    
-      <BaseAlert :variant="variant" >
+<!--
+    <PAI> -> props
+      <FILHO>
+      emit - event <- <NETO></NETO>
+      </FILHO>
+    </PAI>
+-->  
+      <BaseAlert v-if="showAlert" :variant="variant" @close="onClose()" >
         {{text}}
       </BaseAlert>
     
@@ -18,7 +24,8 @@ export default {
 },
   data(){
     return{
-      variant: 'danger',
+      showAlert: true,
+      variant: 'success',
       text: 'Seu formulário foi enviado com sucesso!',
     }
   },
@@ -70,7 +77,10 @@ export default {
 
   },
   methods: {
-
+    onClose(){
+      this.showAlert = false
+      console.log('on Close')
+    }
   }
 }
 </script>

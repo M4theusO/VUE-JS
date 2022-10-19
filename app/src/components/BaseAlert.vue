@@ -5,10 +5,12 @@
     }]">
         Seu formulário foi enviado com sucesso!
     </div>-->
-
     <div :class="baseClass">
-        {{test}}
         <slot/>
+
+        <button @click="onClick()">
+            X
+        </button>
     </div>
 
 </template>
@@ -20,12 +22,7 @@ export default{
         type: String,
         default: ''
     },
-    test: {
-        type: String,
-        default: 'test'
-    }
   },
-
   computed:{
     baseClass(){
         return [
@@ -34,13 +31,21 @@ export default{
         ]
     },
   },
+  methods:{
+    onClick(){
+        this.$emit('close')
+        console.log('clicou')
+    }
+  }
 }
 
 </script>
 
 <style scoped>
 .alert{
-    padding: 5px;
+    display: flex;
+    justify-content: space-between;
+    padding: 7px;
     border-radius: 6px;
     color: gray;
     background: #ddd;
