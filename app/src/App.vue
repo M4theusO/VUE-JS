@@ -1,12 +1,44 @@
 <template>
-  <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/servicos">Serviços</router-link> |
-    <router-link to="/usuarios/10">Usuário</router-link> |
-    <router-link to="/about">About</router-link>
-  </nav>
-  <router-view/>
+  {{ $store.getters.total }}
+  <AppProducts />
+  <br><br>
+  <br><br>
+  <pre>
+    {{ $store.state.cart }}
+  </pre>
+
+  <br><br>
+  <button @click="updateUser()">Atualizar perfil</button>
 </template>
+
+<script>
+import AppProducts from '@/components/Products/AppProducts.vue'
+
+export default {
+  name: 'App',
+  components: {
+    AppProducts
+  },
+  data() {
+    return {
+
+    }
+  },
+  methods: {
+    updateUser() {
+      const newUser = {
+        first_name: 'Matheus',
+        last_name: 'Oliveira',
+        email: 'matheus@oliveira.com'
+      }
+      this.$store.commit('storeUser', newUser)
+    }
+  },
+  created() {
+
+  }
+}
+</script>
 
 <style>
 #app {
@@ -15,18 +47,6 @@
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-}
-
-nav {
-  padding: 30px;
-}
-
-nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-nav a.router-link-exact-active {
-  color: #42b983;
+  margin-top: 60px;
 }
 </style>
