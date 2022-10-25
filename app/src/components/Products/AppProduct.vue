@@ -1,37 +1,16 @@
 <template>
-    <div class="card">
-            {{ product.name }} - {{ product.price }} <br>
-        <button @click="addProduct()">
-            Adicionar 
-        </button>
-
-        <button 
-            @click="removeProduct()">
-            Remover 
-        </button>
+    <div>
+        Produto
     </div>
 </template>
 
 <script>
+import CalculateDiscountMixin from '@/components/Products/CalculateDiscountMixin.vue';
+
 export default{
-    props: {
-        product: Object
-    },
-    methods: {
-        addProduct(){
-            this.$store.commit('addProduct', this.product)
-        },
-        removeProduct(){
-            this.$store.commit('removeProduct', this.product.id)
-        }
+    mixins:[CalculateDiscountMixin],
+    created(){
+        this.calculateDiscount();
     }
 }
 </script>
-
-<style>
-.card{
-    background: bisque;
-    padding: 6px;
-    margin-bottom: 5px;
-}
-</style>

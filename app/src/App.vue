@@ -1,46 +1,32 @@
 <template>
-  {{ $store.getters.total }}
-  <AppProducts />
-  <br><br>
-  <br><br>
-  <pre>
-    {{ $store.state.cart }}
-  </pre>
-
-  <br><br>
-  {{ $store.state.user.first_name }} {{ $store.state.user.last_name }} <br>
-  <button @click="updateUser()">Atualizar perfil</button>
-  <br>
+  <AppProduct/>
+  {{ name }}
+  <img @click="changeName()" alt="Vue Logo" src="./assets/logo.png">
+  <HelloWorld msg="Welcome to your Vue.js App"></HelloWorld>
 </template>
 
 <script>
-import AppProducts from '@/components/Products/AppProducts.vue'
+import HelloWorld from './components/HelloWorld.vue';
+import AppProduct from './components/Products/AppProduct.vue';
 
 export default {
   name: 'App',
   components: {
-    AppProducts
+    HelloWorld,
+    AppProduct
   },
-  data() {
-    return {
+  setup(){
+    //logica cabulosa
+    let name = 'Matheus'
 
+    const changeName = () => {
+      alert('Chegooou')
+      name = 'Matheus Oliveira'
     }
-  },
-  methods: {
-    updateUser() {
-      const newUser = {
-        first_name: 'Matheus',
-        last_name: 'Oliveira',
-        email: 'matheus@oliveira.com'
-      }
-      //this.$store.commit('storeUser', newUser)
-      this.$store.dispatch('storeUser', newUser).then(() => {
-        console.log('Terminou com sucesso!');
-      })
+    return{
+      name,
+      changeName
     }
-  },
-  created() {
-
   }
 }
 </script>
